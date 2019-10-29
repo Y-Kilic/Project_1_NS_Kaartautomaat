@@ -10,21 +10,19 @@ class NS_API(object):
         return
 
     def generalTravelInfo(station):
-        params = urllib.parse.urlencode({
-        'maxJourneys': '25',
-        'station': str(station)
-        })
-
         try:
+            params = urllib.parse.urlencode({'maxJourneys': '25', 'station': str(station)})
+
             conn = http.client.HTTPSConnection('gateway.apiportal.ns.nl')
             conn.request("GET", "/public-reisinformatie/api/v2/departures?" + params, headers=key)
 
             response = conn.getresponse()
             responsetext = response.read()
             data = json.loads(responsetext)
-   
-            return data
+            
             conn.close()
+
+            return data
 
         except Exception as e:
             print(e)
