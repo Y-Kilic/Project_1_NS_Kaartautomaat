@@ -9,7 +9,7 @@ class NS_API(object):
         global key
         return
 
-    def getDepartures(station, limit):
+    def getDepartures(station, limit = 25):
         try:
             params = urllib.parse.urlencode({'maxJourneys': str(limit), 'station': str(station)})
 
