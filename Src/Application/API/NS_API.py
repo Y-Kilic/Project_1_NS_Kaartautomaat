@@ -9,9 +9,9 @@ class NS_API(object):
         global key
         return
 
-    def generalTravelInfo(station):
+    def getDepartures(station, limit):
         try:
-            params = urllib.parse.urlencode({'maxJourneys': '25', 'station': str(station)})
+            params = urllib.parse.urlencode({'maxJourneys': str(limit), 'station': str(station)})
 
             conn = http.client.HTTPSConnection('gateway.apiportal.ns.nl')
             conn.request("GET", "/public-reisinformatie/api/v2/departures?" + params, headers=key)
