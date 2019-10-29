@@ -1,8 +1,11 @@
+import http.client
+import json
+import urllib.parse
+
 class NS_API(object):
     """description of class"""
 
     key = "5404c0d6f7b64a6cb3fea06d314058b7"
-    import http.client, urllib.parse, json
 
     def generalTravelInfo(station):
         params = urllib.parse.urlencode({
