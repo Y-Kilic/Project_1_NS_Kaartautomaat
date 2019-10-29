@@ -2,10 +2,12 @@ import http.client
 import json
 import urllib.parse
 
-class NS_API(object):
-    """description of class"""
+key = { 'Ocp-Apim-Subscription-Key': '5404c0d6f7b64a6cb3fea06d314058b7' }
 
-    key = "5404c0d6f7b64a6cb3fea06d314058b7"
+class NS_API(object):
+    def __init__(self):
+        global key
+        return
 
     def generalTravelInfo(station):
         params = urllib.parse.urlencode({
@@ -25,4 +27,4 @@ class NS_API(object):
             conn.close()
 
         except Exception as e:
-            print("Fout: {} {}".format(e.errno, e.strerror))
+            print(e)
