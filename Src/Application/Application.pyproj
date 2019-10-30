@@ -31,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
+    <Folder Include="DTOs\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
