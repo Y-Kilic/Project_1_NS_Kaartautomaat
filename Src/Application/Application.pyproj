@@ -25,6 +25,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Main.py" />
+    <Compile Include="Managers\ConverterManager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\InfoService.py">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +35,7 @@
   <ItemGroup>
     <Folder Include="API\" />
     <Folder Include="DTOs\" />
+    <Folder Include="Managers\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

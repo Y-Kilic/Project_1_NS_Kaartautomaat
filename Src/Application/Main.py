@@ -1,7 +1,15 @@
-from API.NS_API import NS_API
+from Services.InfoService import InfoService
 
-test1 = NS_API
 
-print(test1.getDepartures(station = "UT", limit = 1))
+infoService = InfoService
+result = infoService.generalTravelInfo()
 
-result = input("")
+for departure in result.departures:
+    ## laat zien welke attributes in per departure zit.
+    print("###########################################################")
+    print(vars(departure))
+    print("###########################################################")
+
+    ## dus je kan nu variables gebruiken om te krijgen wat je wilt bv
+    print(departure.name)
+    print(departure.plannedDateTime)
