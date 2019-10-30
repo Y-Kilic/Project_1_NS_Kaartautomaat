@@ -1,15 +1,12 @@
 import json
 from API.NS_API import NS_API
-from Managers.ConverterManager import ConverterManager
 
 class InfoService(object):
 
     def generalTravelInfo():
-         converter = ConverterManager
          API = NS_API
+         return API.getDepartures(station = "UT", limit = 25)['payload']
 
-         data = API.getDepartures(station = "UT", limit = 25)
-
-         listOfObjects = converter.convertDictToObject(d = data['payload'])
-
-         return listOfObjects
+    def lastDeparturesByStation(station, limit):
+         API = NS_API
+         return API.getDepartures(station = station, limit = limit)['payload']['departures']
