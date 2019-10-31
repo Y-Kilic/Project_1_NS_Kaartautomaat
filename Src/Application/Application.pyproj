@@ -24,10 +24,8 @@
     <Compile Include="API\NS_API.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GUI.py" />
     <Compile Include="Main.py" />
-    <Compile Include="Main_GUI_TEST.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Managers\InfoManager.py">
       <SubType>Code</SubType>
     </Compile>
