@@ -1,12 +1,12 @@
 import json
 from API.NS_API import NS_API
 
-class InfoService(object):
-
-    def generalTravelInfo():
-         API = NS_API
-         return API.getDepartures(station = "UT", limit = 25)['payload']
+class InfoService():
+    API = NS_API
+    
+    def generalTravelInfo():   
+        return InfoService.lastDeparturesByStation(station = "UT", limit = 25)
 
     def lastDeparturesByStation(station, limit):
-         API = NS_API
-         return API.getDepartures(station = station, limit = limit)['payload']['departures']
+        result = InfoService.API.getDepartures(station = station, limit = limit)
+        return result['payload']['departures']

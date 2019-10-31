@@ -2,9 +2,9 @@ from Services.InfoService import InfoService
 
 
 infoService = InfoService
-result = infoService.generalTravelInfo()
+departures = infoService.generalTravelInfo()
 
-for departure in result['departures']:
+for departure in departures:
     ## laat zien welke attributes in per departure zit.
     print("###########################################################")
     print(departure.keys())

@@ -25,6 +25,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Main.py" />
+    <Compile Include="Main_GUI_TEST.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\InfoService.py">
       <SubType>Code</SubType>
     </Compile>
