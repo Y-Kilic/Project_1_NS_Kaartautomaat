@@ -9,7 +9,6 @@ departures = infoService.generalTravelInfo()
 
 ##### D U M M Y   V A R I A B L E S #####
 allStations = {"Utrecht Centraal", "Amsterdam Centraal"}
-#delay = '_ min'
 ##### D U M M Y   V A R I A B L E S #####
 
 # GUI list of departures
@@ -27,14 +26,12 @@ def show_departures(selectedStation):
     Label(master=GUIdepartures, text='Verwachte \nvertrektijd', font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=660, y=47)
 
     yaxis = 100
-    for departure in departures[:16]:
-        delay = InfoManager.getDelay(departure['plannedDateTime'], departure['actualDateTime'])
-
+    for departure in departures:
         Label(master=GUIdepartures, text=departure['plannedDateTime'][11:16], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=160, y=yaxis)
         Label(master=GUIdepartures, text=departure['direction'], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=230, y=yaxis)
         Label(master=GUIdepartures, text=departure['plannedTrack'], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=375, y=yaxis)
         Label(master=GUIdepartures, text=departure['trainCategory'], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=445, y=yaxis)
-        Label(master=GUIdepartures, text=delay, font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=525, y=yaxis)
+        Label(master=GUIdepartures, text=InfoManager.getDelay(departure['plannedDateTime'], departure['actualDateTime']), font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=525, y=yaxis)
         Label(master=GUIdepartures, text=departure['actualDateTime'][11:16], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=670, y=yaxis)
         yaxis += 25
 

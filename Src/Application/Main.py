@@ -1,9 +1,22 @@
 from Services.InfoService import InfoService
+from Managers.InfoManager import InfoManager
+
 from API.NS_API import NS_API
 
 
 
 infoService = InfoService
+infoManager = InfoManager
+API = NS_API
+
+
+
+bestaatStation = infoManager.isValidStation("Utrechttraal")
+
+
+
+
+
 departures = infoService.generalTravelInfo()
 
 for departure in departures:

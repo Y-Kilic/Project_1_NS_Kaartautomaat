@@ -24,3 +24,19 @@ class NS_API(object):
 
         except Exception as e:
             print(e)
+
+    def getAllStations():
+        try:
+            conn = http.client.HTTPSConnection('gateway.apiportal.ns.nl')
+            conn.request("GET", "/public-reisinformatie/api/v2/stations?", headers=NS_API.key)
+
+            response = conn.getresponse()
+            responsetext = response.read()
+            data = json.loads(responsetext)
+            
+            conn.close()
+
+            return data
+
+        except Exception as e:
+            print(e)
