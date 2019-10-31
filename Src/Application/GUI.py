@@ -16,6 +16,7 @@ def show_departures(stationCode):
 
     root.title("Actuele reisinformatie voor: " + str(stationName))
     Label(master=GUIdepartures, text=("Actuele reisinformatie voor: " + str(stationName)), font=buttonFont, foreground=nsBlue, background=nsYellow).place(x=300, y=20)
+    Button(master=GUIdepartures, text="< Terug naar menu", font=buttonFont, foreground=nsWhite, background=nsBlue, command=main_menu).place(x=10, y=10)
 
     Label(master=GUIdepartures, text="Geplande \nvertrektijd", font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=120, y=47)
     Label(master=GUIdepartures, text='Richting', font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=230, y=65)
@@ -55,6 +56,8 @@ def select_station():
 
 # GUI main menu function
 def main_menu():
+    for widget in GUIdepartures.winfo_children():
+        widget.destroy()
     GUIdepartures.pack_forget()
     GUImenu.pack()
     root.title("NS Kaartautomaat")
@@ -68,7 +71,7 @@ nsBlue = "#0000A5"      # Buttons
 nsBlueDark = "#002C8C"  # Splash text
 nsYellow = "#FFC800"    # Background
 nsWhite = "#FFFFFF"     # Button text
-nsRed = "FF0000"        # Delayed or cancelled
+nsRed = "FF0000"        # Used in nsDelay
 
 # GUI setup
 root = Tk()
@@ -92,7 +95,6 @@ searchBar = Entry(master=GUImenu)
 GUIdepartures = Frame(master=root)
 GUIdepartures.configure(height=700, width=940, background=nsYellow)
 
-Button(master=GUIdepartures, text="< Terug naar menu", font=buttonFont, foreground=nsWhite, background=nsBlue, command=main_menu).place(x=10, y=10)
 
 
 
