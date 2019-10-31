@@ -9,4 +9,4 @@ class InfoService():
 
     def lastDeparturesByStation(station, limit):
         result = InfoService.API.getDepartures(station = station, limit = limit)
-        return result['payload']['departures']
+        return result['payload']['departures'][:limit]

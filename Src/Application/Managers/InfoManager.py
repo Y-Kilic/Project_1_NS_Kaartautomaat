@@ -10,18 +10,35 @@ class InfoManager(object):
         actual = actualDateTime.replace('T', ':')
         planned = datetime.datetime.strptime(planned[11:16], '%H:%M')
         actual = datetime.datetime.strptime(actual[11:16], '%H:%M')
+        
+        
         delay = actual - planned
-        return str(delay)
+
+        try:
+            delay = str(actual - planned)
+        except:
+            delay = "-"
+            print(f"Er is iets fout gegaan met {delay}")
+
+        return delay[:-3]
 
     def isValidStation(stationName):
         API = NS_API
         stations = API.getAllStations()['payload']
 
         for station in stations:
-            if station["code"] == stationName:
-                return station
-            elif station["namen"]["lang"] == stationName:
+            if station["code"].lower() == stationName.lower():
+                return station["code"]
+            elif station["namen"]["lang"].lower() == stationName.lower():
                 return station["code"]
             
+        return ""
+    def getStationFullnameByCode(stationCode):
+        API = NS_API
+        stations = API.getAllStations()['payload']
+
+        for station in stations:
+            if station["code"].lower() == stationCode.lower():
+                return station["namen"]["lang"]
         return ""
 

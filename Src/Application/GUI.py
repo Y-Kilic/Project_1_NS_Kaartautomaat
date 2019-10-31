@@ -5,18 +5,17 @@ from tkinter import messagebox
 import datetime
 
 infoService = InfoService
-departures = infoService.generalTravelInfo()
-
-##### D U M M Y   V A R I A B L E S #####
-allStations = {"Utrecht Centraal", "Amsterdam Centraal"}
-##### D U M M Y   V A R I A B L E S #####
-
+infoManager = InfoManager
 # GUI list of departures
-def show_departures(selectedStation):
+def show_departures(stationCode):
     GUImenu.pack_forget()
     GUIdepartures.pack()
-    root.title("Actuele reisinformatie voor: " + str(selectedStation))
-    Label(master=GUIdepartures, text=("Actuele reisinformatie voor: " + str(selectedStation)), font=buttonFont, foreground=nsBlue, background=nsYellow).place(x=300, y=20)
+    
+    departures = infoService.lastDeparturesByStation(station = stationCode, limit = 16)
+    stationName = infoManager.getStationFullnameByCode(stationCode)
+
+    root.title("Actuele reisinformatie voor: " + str(stationName))
+    Label(master=GUIdepartures, text=("Actuele reisinformatie voor: " + str(stationName)), font=buttonFont, foreground=nsBlue, background=nsYellow).place(x=300, y=20)
 
     Label(master=GUIdepartures, text="Geplande \nvertrektijd", font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=120, y=47)
     Label(master=GUIdepartures, text='Richting', font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=230, y=65)
@@ -36,12 +35,12 @@ def show_departures(selectedStation):
         yaxis += 25
 
 # GUI station validator
-def station_validator(station):
-    selectedStation = station
-    if selectedStation not in allStations:
+def station_validator(selectedStation):
+    stationCode = infoManager.isValidStation(selectedStation)
+    if (len(stationCode) < 1):
         messagebox.showinfo("Foutmelding", "Geen station gevonden, probeert u het alstublieft opnieuw.")
     else:
-        show_departures(selectedStation)
+        show_departures(stationCode)
 
 # GUI unavailable functions pop-up
 def out_of_order():
