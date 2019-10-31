@@ -1,4 +1,6 @@
 from Services.InfoService import InfoService
+from API.NS_API import NS_API
+
 
 
 infoService = InfoService
