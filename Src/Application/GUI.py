@@ -1,13 +1,16 @@
+""" Import necessary files """
 from Services.InfoService import InfoService
 from Managers.InfoManager import InfoManager
 from tkinter import *
 from tkinter import messagebox
 import datetime
 
+""" Instantiate new object based on class. We do this to make it more organised in case we in the future need to create different states of
+the object based on constructor inputs """
 infoService = InfoService
 infoManager = InfoManager
 
-# GUI list of departures
+""" Shows the departure screen, including the 'back to menu' button and the titles for each column """
 def show_departures(stationCode):
     GUImenu.pack_forget()
     GUIdepartures.pack()
@@ -27,6 +30,8 @@ def show_departures(stationCode):
     Label(master=GUIdepartures, text='Verwachte \nvertrektijd', font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=660, y=47)
 
     yaxis = 100
+
+    """ Determines the information shown per departure """
     for departure in departures:
         Label(master=GUIdepartures, text=departure['plannedDateTime'][11:16], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=160, y=yaxis)
         Label(master=GUIdepartures, text=departure['direction'], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=230, y=yaxis)
@@ -36,7 +41,7 @@ def show_departures(stationCode):
         Label(master=GUIdepartures, text=departure['actualDateTime'][11:16], font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=670, y=yaxis)
         yaxis += 25
 
-# GUI station validator
+""" Determines whether the given station exists and tells the user to try again if it doesn't exist """
 def station_validator(selectedStation):
     stationCode = infoManager.isValidStation(selectedStation)
     if (len(stationCode) < 1):
@@ -44,26 +49,26 @@ def station_validator(selectedStation):
     else:
         show_departures(stationCode)
 
-# GUI unavailable functions pop-up
+""" Tells the user that the chosen option is 'temporarily' unavailable """
 def out_of_order():
     messagebox.showinfo("Foutmelding", "Deze functie is tijdelijk niet beschikbaar. Excuses voor het ongemak!")
 
-# GUI station selection
+""" Shows the station search option area """
 def select_station():
     searchBar.place(x=600, y=390)
     Label(master=GUImenu, text="Van welk station \nwilt u de vertrekinformatie?", font=buttonFont, foreground=nsBlueDark, background=nsYellow).place(x=555, y=340)
     Label(master=GUImenu, text="bijv. 'Utrecht Centraal'", font=credFont, foreground=nsBlueDark, background=nsYellow).place(x=600, y=420)
     Button(master=GUImenu, text="Zoek", font=credFont, foreground=nsWhite, background=nsBlue, command=lambda: station_validator(searchBar.get())).place(x=730, y=386)
 
-# GUI main menu function
+""" Shows the main menu, and destroys children (if needed) """
 def main_menu():
-    for widget in GUIdepartures.winfo_children():
-        widget.destroy()
+    for child in GUIdepartures.winfo_children():
+        child.destroy()
     GUIdepartures.pack_forget()
     GUImenu.pack()
     root.title("NS Kaartautomaat")
 
-# GUI fonts & colours
+""" Predetermines the fonts and colours used in the GUI """
 splashFont = ("Helvetica", 48, "bold")
 buttonFont = ("Helvetica", 12, "bold")
 credFont = ("Helvetica", 10)
@@ -72,12 +77,11 @@ nsBlue = "#0000A5"      # Buttons
 nsBlueDark = "#002C8C"  # Splash text
 nsYellow = "#FFC800"    # Background
 nsWhite = "#FFFFFF"     # Button text
-nsRed = "FF0000"        # Used in nsDelay
 
-# GUI setup
+
+""" Defines the main menu GUI frame (including buttons) """
 root = Tk()
 
-# GUI main menu frame
 GUImenu = Frame(master=root)
 GUImenu.configure(height=700, width=940, background=nsYellow)
 
@@ -92,9 +96,10 @@ buttonDepartures = Button(master=GUImenu, text="Opzoeken \n vertrektijden", fore
 
 searchBar = Entry(master=GUImenu)
 
-# GUI departures frame
+""" Defines the departures screen GUI frame (excluding buttons) """
 GUIdepartures = Frame(master=root)
 GUIdepartures.configure(height=700, width=940, background=nsYellow)
 
+""" Starts the whole thing up """
 main_menu()
 root.mainloop()
