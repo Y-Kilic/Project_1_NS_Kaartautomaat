@@ -15,7 +15,7 @@ class InfoManager(object):
               
         delay = actual - planned
 
-        return delay[:-3]
+        return str(delay)[:-3]
 
     def isValidStation(stationName):
         stations = InfoManager.infoService.getAllStations()
