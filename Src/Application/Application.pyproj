@@ -35,7 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Managers\" />
     <Folder Include="Services\" />
   </ItemGroup>
